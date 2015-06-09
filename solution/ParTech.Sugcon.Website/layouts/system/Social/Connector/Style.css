@@ -1,0 +1,38 @@
+﻿body {
+}
+
+.button
+{
+    margin-right: 1px;
+    margin-left: 1px;
+}
+
+.buttonGoto
+{
+    margin-right: 1px;
+    margin-left: 1px;
+    margin-top: 3px;
+}
+
+.panel
+{
+    border: 1px solid #89C0F8;
+    padding: 5px 4px 5px 4px;
+    background-color: #E9F5FC;
+    margin-top: 10px;
+}
+
+.panelGoto
+{
+    border: 1px solid #89C0F8;
+    padding: 2px 3px 2px 3px;
+    background-color: #E9F5FC;
+    margin-top: 10px;
+}
+
+.welcome
+{
+    font-size: small;
+    color: #438DF1;
+    margin-bottom: 3px;
+}

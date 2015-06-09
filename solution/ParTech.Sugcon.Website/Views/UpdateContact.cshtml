@@ -1,0 +1,23 @@
+﻿@model ParTech.Sugcon.Models.ContactViewModel
+
+<form method="post">
+    <div>
+        <label>First name:</label>
+        <input type="text" name="FirstName" value="@Model.FirstName" />
+    </div>
+    <div>
+        <label>Last name:</label>
+        <input type="text" name="LastName" value="@Model.LastName" />
+    </div>
+    <div>
+        <label>City:</label>
+        <input type="text" name="City" value="@Model.City" />
+    </div>
+    <div>
+        <label>Email:</label>
+        <input type="text" name="Email" value="@Model.Email" />
+    </div>
+    <div>
+        <input type="submit" />
+    </div>
+</form>

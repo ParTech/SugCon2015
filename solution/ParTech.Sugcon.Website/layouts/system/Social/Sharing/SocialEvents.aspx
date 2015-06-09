@@ -1,0 +1,1 @@
+<%@ Page Language="C#" Inherits="Sitecore.Social.Client.Sharing.SocialEvents" %>

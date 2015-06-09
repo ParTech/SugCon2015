@@ -1,0 +1,50 @@
+﻿@model ParTech.Sugcon.Models.ContactViewModel
+
+@using Sitecore.Analytics
+
+<div>
+    <label>Tracker active:</label>
+    <span>@Tracker.IsActive</span>
+</div>
+
+@if (!Tracker.IsActive)
+{
+    return;
+}
+
+<div>
+    <label>Contact ID:</label>
+    <span>@Model.ContactId</span>
+</div>
+
+<div>
+    <label>Identification level:</label>
+    <span>@Model.IdentificationLevel</span>
+</div>
+
+<div>
+    <label>Identifier:</label>
+    <span>@(Model.Identifier ?? "null")</span>
+</div>
+
+<hr />
+
+<div>
+    <label>First name:</label>
+    <span>@(Model.FirstName ?? "null")</span>
+</div>
+
+<div>
+    <label>Last name:</label>
+    <span>@(Model.LastName ?? "null")</span>
+</div>
+
+<div>
+    <label>City:</label>
+    <span>@(Model.City ?? "null")</span>
+</div>
+
+<div>
+    <label>Email:</label>
+    <span>@(Model.Email ?? "null")</span>
+</div>

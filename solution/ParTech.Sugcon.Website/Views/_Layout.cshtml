@@ -1,0 +1,21 @@
+﻿
+@Html.Sitecore().VisitorIdentification()
+
+<h1>@Url.RequestContext.RouteData.Values["action"]</h1>
+
+<a href="@Url.Action("Index", "Demo")">Index</a> | 
+<a href="@Url.Action("ForgetContact", "Demo")">Forget contact</a> | 
+<a href="@Url.Action("EndSession", "Demo")">End session</a> | 
+<a href="@Url.Action("CommitSession", "Demo")">Commit session</a> | 
+<a href="@Url.Action("UpdateContact", "Demo")">Update contact</a> | 
+<a href="@Url.Action("IdentifyContact", "Demo")">Identify contact</a> | 
+<a href="@Url.Action("LoadContactFromXDb", "Demo")">Load contact from xDB</a> | 
+<a href="@Url.Action("SaveContactToXDb", "Demo")">Save contact to xDB</a> | 
+<a href="@Url.Action("SaveContactToXDbWithLocking", "Demo")">Save contact to xDB (with locking)</a> | 
+<a href="@Url.Action("RebuildContacts", "Demo")">Rebuild contacts</a>
+
+<hr />
+
+<style>span { font-weight: bold } div { margin: 10px 0 5px 0 }</style>
+
+@RenderBody()

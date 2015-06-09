@@ -1,0 +1,8 @@
+﻿@model Sitecore.Social.Client.Mvc.Areas.Social.Models.LoginViewModel
+
+@using (Html.BeginForm("Login", null, new { area = "Social" }, FormMethod.Post, new { style = "display:inline" }))
+{
+  @Html.HiddenFor(model => model.Parameters)
+
+  <input type="image" title='@Model.ToolTip' style="margin:0 1px" src="@Url.Content(Model.Icon)" />
+}

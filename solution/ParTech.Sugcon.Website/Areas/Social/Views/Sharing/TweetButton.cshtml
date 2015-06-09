@@ -1,0 +1,36 @@
+﻿@using Sitecore.Data
+@model Sitecore.Social.Client.Mvc.Areas.Social.Models.ShareButtonViewModel
+
+@{
+  var shareButtonId = string.Format("shareButton_{0}", ShortID.NewId());
+}
+
+<div style="float: right;">
+  <a id="@shareButtonId"
+     href="http://twitter.com/share"
+     class="twitter-share-button"
+     data-url='@HttpUtility.UrlPathEncode(Model.SharePageUrlWithAnalyticsParameters)'
+     data-counturl='@HttpUtility.UrlPathEncode(Model.SharePageUrlWithAnalyticsParameters)'
+     data-count="horizontal">@Model.Text</a>
+  </div>
+
+  <script>
+    window.twttr = (function (d, s, id) {
+      var t, js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return window.twttr;
+      js = d.createElement(s); js.id = id;
+      js.src = "https://platform.twitter.com/widgets.js";
+      fjs.parentNode.insertBefore(js, fjs);
+      return window.twttr || (t = { _e: [], ready: function (f) { t._e.push(f); } });
+    }(document, "script", "twitter-wjs"));</script>
+
+  <script>
+    twttr.ready(
+    function (twttr) {
+      twttr.events.bind('tweet', function (event) {
+        if (event.target.id === '@shareButtonId') {
+          @Html.Raw(Model.SubscribeToShareButtonEventScript)
+        }
+      });
+    });
+  </script>

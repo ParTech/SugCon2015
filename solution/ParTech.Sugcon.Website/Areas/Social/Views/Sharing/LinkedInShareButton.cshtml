@@ -1,0 +1,6 @@
+﻿@model Sitecore.Social.Client.Mvc.Areas.Social.Models.ShareButtonViewModel
+<script src="//platform.linkedin.com/in.js" type="text/javascript">
+  lang: en_US
+</script>
+<div style="float:right;"><script type="IN/Share" data-url="@Model.SharePageUrlWithAnalyticsParameters" data-counter="right" data-onsuccess="linkedInShareSubscribe"></script></div>
+@Html.Raw(Model.SubscribeToShareButtonEventScript)
