@@ -1,11 +1,13 @@
 ﻿namespace ParTech.Sugcon.Models.ContactModel
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using ParTech.Sugcon.Extensions;
     using ParTech.Sugcon.Utilities;
     using Sitecore.Analytics.Model.Framework;
 
+    [Serializable]
     public class UserDataFacet : Facet, IUserDataFacet
     {
         public UserDataFacet()

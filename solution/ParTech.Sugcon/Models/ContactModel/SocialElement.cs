@@ -1,7 +1,9 @@
 ﻿namespace ParTech.Sugcon.Models.ContactModel
 {
+    using System;
     using Sitecore.Analytics.Model.Framework;
 
+    [Serializable]
     public class SocialElement : Element, ISocialElement
     {
         public SocialElement()
