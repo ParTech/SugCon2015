@@ -87,6 +87,8 @@
             contact.ContactSaveMode = ContactSaveMode.AlwaysSave;
 
             var personal = contact.GetFacet<IContactPersonalInfo>();
+
+            if (!string.IsNullOrEmpty(request.FirstName))
             personal.FirstName = request.FirstName ?? personal.FirstName;
             personal.Surname = request.LastName ?? personal.Surname;
 
@@ -98,7 +100,7 @@
             var defaultEmail = emails.Entries.GetOrCreate();
             defaultEmail.SmtpAddress = request.Email ?? defaultEmail.SmtpAddress;
 
-            this.ApplyCustomData(contact);
+            // this.ApplyTestData(contact);
 
             return this.RedirectToAction("Index");
         }
@@ -180,7 +182,7 @@
             // Create contact or load contact readonly to get the ContactId.
             // We cannot directly TryLoadContact if we only have the identifier.
             // This will load the contact directly from xDB (not from shared session).
-            // Do not start manipulating this Contact because it's meant to be readonly (although saving it will work in most cases...)
+            // Do not start manipulating this Contact because it's meant to be readonly!
             // If you do, you will override anything that was manipulated in the session.
             var contact = this.LoadOrCreateContact(request.Identifier); 
 
@@ -190,8 +192,6 @@
 
                 // Load the Contact from the shared session so we can manipulate it.
                 // If it's not in the session yet, this will load it from xDB and store it in the session first.
-                Log.Debug(string.Format("[DemoController] TryLoadContact: {0}", contact.ContactId));
-
                 var lockAttempt = contactManager.TryLoadContact(contact.ContactId, 1);
 
                 if (lockAttempt.Status == LockAttemptStatus.Success)
@@ -346,10 +346,10 @@
                 .ToList();
         }
 
-        private void ApplyCustomData(Contact contact)
+        private void ApplyTestData(Contact contact)
         {
-            /*
             var personal = contact.GetFacet<IContactPersonalInfo>();
+            personal.JobTitle = "SUGCON2015";
             personal.FirstName = "Ruud";
             personal.Surname = "van Falier";
 
@@ -360,8 +360,7 @@
             var emails = contact.GetFacet<IContactEmailAddresses>();
             var defaultEmail = emails.Entries.GetOrCreate();
             defaultEmail.SmtpAddress = "ruud@partechit.nl";
-            */
-
+            
             var userDataFacet = contact.GetFacet<IUserDataFacet>();
 
             userDataFacet.Profession = "Sitecore thug";
