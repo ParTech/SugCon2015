@@ -1,9 +1,15 @@
-﻿@model ParTech.Sugcon.Models.ContactViewModel
+﻿@using Sitecore.Analytics
+@model ParTech.Sugcon.Models.ContactViewModel
+
+<div>
+    <label>Tracker active:</label>
+    <span>@Tracker.IsActive</span>
+</div>
 
 <form method="post">
     <div>
         <label>Contact ID:</label>
-        <input type="text" name="Guid" value="@Model.ContactId" />
+        <input type="text" name="Guid" value="@Model.ContactId" readonly />
     </div>
     <div>
         <label>Identifier:</label>

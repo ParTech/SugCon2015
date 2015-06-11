@@ -152,33 +152,6 @@
         [HttpPost]
         public ActionResult SaveContactToXDb(UpdateContactRequestModel request)
         {
-            var contact = this.LoadOrCreateContact(request.Identifier);
-
-            var personal = contact.GetFacet<IContactPersonalInfo>();
-            personal.FirstName = request.FirstName ?? personal.FirstName;
-            personal.Surname = request.LastName ?? personal.Surname;
-
-            var addresses = contact.GetFacet<IContactAddresses>();
-            var defaultAddress = addresses.Entries.GetOrCreate();
-            defaultAddress.City = request.City ?? defaultAddress.City;
-
-            var emails = contact.GetFacet<IContactEmailAddresses>();
-            var defaultEmail = emails.Entries.GetOrCreate();
-            defaultEmail.SmtpAddress = request.Email ?? defaultEmail.SmtpAddress;
-
-            this.SaveAndReleaseContact(contact);
-
-            return this.View("~/Views/SaveContact.cshtml", new ContactViewModel(contact));
-        }
-
-        public ActionResult SaveContactToXDbWithLocking()
-        {
-            return this.View("~/Views/SaveContact.cshtml", new ContactViewModel());
-        }
-
-        [HttpPost]
-        public ActionResult SaveContactToXDbWithLocking(UpdateContactRequestModel request)
-        {
             // Create contact or load contact readonly to get the ContactId.
             // We cannot directly TryLoadContact if we only have the identifier.
             // This will load the contact directly from xDB (not from shared session).
@@ -210,6 +183,8 @@
                     var defaultEmail = emails.Entries.GetOrCreate();
                     defaultEmail.SmtpAddress = request.Email ?? defaultEmail.SmtpAddress;
 
+                    // This would normally be called after when the request ends,
+                    // but since we have no request we need to call it ourselves.
                     this.SaveAndReleaseContact(contact);
 
                     return this.View("~/Views/SaveContact.cshtml", new ContactViewModel(contact));
